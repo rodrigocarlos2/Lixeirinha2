@@ -1,23 +1,149 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Get My Coords</title>
-    </head>
-    <body>
-        <div class="container">
-            <div id="getIt">Get My Coords</div>
-            <div class="long hds">Longitude</div>
-            <div class="long-view ds"></div>
-            <div class="lat hds">Latitude</div>
-            <div class="lat-view ds"></div>
 
-        </div>
-        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+<style>
+
+form { 
+margin: 0 auto; 
+width:250px;
+}
+
+body {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+  font-size: 13px;
+}
+
+div {
+  background: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  /* border-radius */
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+
+form div { 
+  border:1px solid #eee;
+  height:60px;
+  padding:10px
+}
+
+input#iiihuu-iiihuu {
+  text-transform:lowercase;
+  color:#f6892e!important;
+  font-weight:bold;
+  border:0;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  width:75%;
+  float:left
+}
+
+input#formSubmit {
+ background:#F6892E;
+ float:right;
+ padding:8px;
+ color:#fff;
+ border:0;
+ width:20%;
+ font-weight:bold 
+}
+
+</style>
+
+<form id="form">
+
+        <label for="form__longitude"> Longitude </label>
+        <input type="text" id="form__longitude2" name="Longitude" value="0" readonly="readonly">
+        <br>
+        
+        <label for="form__latitude" id="form__latitude"> Latitude </label>
+        <input type="text" id="form__latitude2" name="Latitude" value="0" readonly="readonly">
+        <br>
+        <br>
+
+        <p align="center">
+        <input type="submit" value="Tem Lixo Aqui!">
+        </p>
+        
+</form>
+
+<script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+
+<script>
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } 
+        else {
+        x.innerHTML = "Geolocalização não é Suportada.";
+        }
+    }
+    function showPosition(position) {
+        document.getElementById("form__latitude2").value = position.coords.latitude;
+        document.getElementById("form__longitude2").value = position.coords.longitude;
+    }
+
+    getLocation();
+
+</script>
+
+<script>
+        
+        var submissionsRef = new Firebase('https://lixeirinho-67cb3.firebaseio.com/');
+        var $form = $('#form');
+        
+        $form.submit(function(event) {
+            
+            event.preventDefault();
+            
+            // Firebase generates random id when pushed
+            var data = $form.serializeArray();
+
+            submissionsRef.push(data, function(err) {
+                if (err) {
+                    window.alert('Erro na Submissão de Dados: ' + err.message);
+                }
+            });
+            window.alert('Dados Submetidos: \n' + JSON.stringify(data, null, 2));
+            $form[0].reset();
+        });
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDUCTQoGQLndxxVeyEkpiMwDK9ygKjhV3w",
+    authDomain: "lixeirinho-67cb3.firebaseapp.com",
+    databaseURL: "https://lixeirinho-67cb3.firebaseio.com",
+    projectId: "lixeirinho-67cb3",
+    storageBucket: "lixeirinho-67cb3.appspot.com",
+    messagingSenderId: "154992450487"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</body>
+
 </html>
