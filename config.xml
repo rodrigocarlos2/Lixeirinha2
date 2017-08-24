@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.weberish.getmycoords"
+        id        = "com.rodrigo.lixeirinha"
         version   = "1.0.0">
 
-    <name>Get My Coords</name>
+    <name>Lixeirinha</name>
 
     <description>
         Display coordinates of your location.
     </description>
 
-    <author href="http://weberish.com" email="info@weberish.com">
-        Weberish
+    <author href="github/rodrigocarlos2" email="rocaleal98@gmail.com">
+        Rodrigo
     </author>
 
     <!--
@@ -43,22 +43,12 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
-    <gap:plugin name="org.apache.cordova.core.geolocation"/>
-
-    <feature name="Geolocation">
-
-        <param name="ios-package" value="CDVLocation">
-
-    </feature>
+    <gap:plugin name="org.apache.cordova.geolocation" source="npm" />
 
     <!-- Define app icon for each platform. This is a relative path to config.xml.
         For e.g. if you place an icon.png inside res folder, you should modify the
         src in the following setting to "res/icon.png" -->
     <icon src="icon.png" />
-
-    <!-- Define app splash screen for each platform. -->
-
-
 
     <access />
 
