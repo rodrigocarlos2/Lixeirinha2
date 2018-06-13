@@ -13,6 +13,8 @@
 
 <plugin name="cordova-plugin-device" />
 <plugin name="cordova-plugin-file" />
+<gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
+<gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
 <plugin name="cordova-plugin-inappbrowser" />
 <plugin name="cordova-plugin-statusbar" />
 
